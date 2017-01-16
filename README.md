@@ -1,14 +1,7 @@
-# Atomist 'rug-cli-logging'
+# Atomist 'handlers'
 
-[![Build Status](https://travis-ci.org/atomist/rug-cli-logging.svg?branch=master)](https://travis-ci.org/atomist/rug-cli-logging)
 [![Slack Status](https://join.atomist.com/badge.svg)](https://join.atomist.com/)
 
-Extension for the Rug CLI to enable logging to `~/.atomist/cli.log`
+Rug _handlers_ and _executors_ that power the Atomist Community Slack team.
 
-## Installation
-
-In order to install this extension into your CLI, run the following command:
-
-```
-rug extension install com.atomist:rug-cli-logging
-```
+Read read more about this at [Test](https://medium.com/the-composition/automating-our-development-flow-with-atomist-6b0ec73348b6#.hwa55uv8o).
