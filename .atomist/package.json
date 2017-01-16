@@ -1,0 +1,25 @@
+{
+    "name": "@atomisthqa/handlers",
+    "version": "0.7.0",
+    "description": "Handlers for Atomist",
+    "keywords": [
+        "Atomist",
+        "Rug",
+        "System Model"
+    ],
+    "author": "Atomist, Inc",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/atomisthqa/handlers.git"
+    },
+    "bugs": {
+        "url": "https://github.com/atomisthqa/handlers.git/issues"
+    },
+    "homepage": "https://github.com/atomisthqa/handlers.git",
+    "dependencies": {
+        "@atomist/rug": "0.9.0",
+        "@atomist/github": "0.1.1",
+        "@atomist/travis": "0.5.1"
+    }
+}

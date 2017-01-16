@@ -1,0 +1,12 @@
+group: atomist
+artifact: handlers
+version: "0.2.2"
+
+requires: "0.10.0-20170109233436"
+
+dependencies:
+
+extensions:
+  - "com.atomist:github-commands:0.3.2"
+  - "com.atomist:model:0.3.1-20170113215856"
+  - "com.atomist:travis-rug-type:0.6.0"
