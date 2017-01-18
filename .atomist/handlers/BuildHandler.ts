@@ -12,7 +12,7 @@ atomist.on<TreeNode, TreeNode>("/build", m => {
 
    // TODO split this into two handlers with proper tree expressions with predicates
    if (build.status() == "Passed" || build.status() == "Fixed") {
-     message.withAction(message.actionRegistry().findByName("CreateRelease|Release"))
+     //message.withAction(message.actionRegistry().findByName("CreateRelease|Release"))
      if (build.status() == "Fixed") {
        sendDirectMessage(build, `Travis CI build ${build_name} of repo ${repo} is now fixed`, mb)
      }
