@@ -4,6 +4,8 @@ import { Result, Status, Parameter } from "@atomist/rug/operations/RugOperation"
 
 import { GitHubService } from "@atomist/github/core/Core"
 
+import { RepoUserToken, Owner, Repository } from './Parameters'
+
 interface Parameters {
     number: number
     label: string
@@ -15,15 +17,12 @@ interface Parameters {
 var labelIssue: Executor = {
     description: "Label a GitHub issue",
     name: "LabelIssue",
-    tags: ["atomist/intent=label issue"],
+    tags: ["atomist/intent=label issue", "atomist/private=false"],
     parameters: [
         // TODO proper patterns and validation
         { name: "number", description: "Issue Number", pattern: "^.*$", maxLength: 100, required: true },
         { name: "label", description: "Label", pattern: "^.*$", maxLength: 100, required: true },
-        { name: "owner", description: "GitHub Owner", pattern: "^.*$", maxLength: 100, required: false, displayable: false, default: "atomist"},
-        { name: "repo", description: "GitHub Repo", pattern: "^.*$", maxLength: 100, required: true, displayable: false, tags: ["atomist/repository"] },
-        // TODO marking it required: false will prevent the bot to ask for it
-        { name: "token", description: "GitHub Token", pattern: "^.*$", maxLength: 100, required: false, displayable: false, tags: ["atomist/user_token"] }
+        Owner, Repository, RepoUserToken
     ],
     execute(services: Services, p: Parameters): Result {
 

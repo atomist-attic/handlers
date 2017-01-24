@@ -4,6 +4,8 @@ import { Result, Status, Parameter } from "@atomist/rug/operations/RugOperation"
 
 import { GitHubService, Issue } from "@atomist/github/core/Core"
 
+import { RepoUserToken, Owner, Repository } from './Parameters'
+
 interface Parameters {
     search: string
     owner: string
@@ -14,14 +16,10 @@ interface Parameters {
 var listRepositoryIssues: Executor = {
     description: "List repository GitHub issues",
     name: "ListRepositoryIssues",
-    tags: ["atomist/intent=open issues"],
+    tags: ["atomist/intent=open issues", "atomist/private=false"],
     parameters: [
         { name: "search", description: "Search Text", pattern: "^.*$", maxLength: 100, required: false, displayable: true},
-        // TODO proper patterns and validation
-        { name: "owner", description: "GitHub Owner", pattern: "^.*$", maxLength: 100, required: false, displayable: false, default: "atomist"},
-        { name: "repo", description: "GitHub Repo", pattern: "^.*$", maxLength: 100, required: true, displayable: false, tags: ["atomist/repository"] },
-        // TODO marking it required: false will prevent the bot to ask for it
-        { name: "token", description: "GitHub Token", pattern: "^.*$", maxLength: 100, required: false, displayable: false, tags: ["atomist/user_token"] }
+        Owner, Repository, RepoUserToken
     ],
     execute(services: Services, p: Parameters): Result {
 

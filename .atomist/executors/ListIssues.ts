@@ -4,6 +4,8 @@ import { Result, Status, Parameter } from "@atomist/rug/operations/RugOperation"
 
 import { GitHubService, Issue } from "@atomist/github/core/Core"
 
+import { RepoUserToken } from './Parameters'
+
 interface Parameters {
     days: number
     token: string
@@ -12,12 +14,11 @@ interface Parameters {
 var listIssues: Executor = {
     description: "List user's GitHub issues",
     name: "ListIssues",
-    tags: ["atomist/intent=list issues"],
+    tags: ["atomist/intent=list issues", "atomist/private=false"],
     parameters: [
         // TODO proper patterns and validation
         { name: "days", description: "Days", pattern: "^.*$", maxLength: 100, required: false, default: "1" },
-        // TODO marking it required: false will prevent the bot to ask for it
-        { name: "token", description: "GitHub Token", pattern: "^.*$", maxLength: 100, required: false, displayable: false, tags: ["atomist/user_token"] }
+        RepoUserToken
     ],
     execute(services: Services, p: Parameters): Result {
 
