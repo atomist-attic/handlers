@@ -13,7 +13,7 @@ interface Parameters {
     token: string
 }
 
-var createRelease: Executor = {
+export let createRelease: Executor = {
     description: "Create a GitHub release",
     name: "CreateRelease",
     tags: ["atomist/intent=create release", "atomist/private=false"],

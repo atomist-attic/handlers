@@ -15,7 +15,7 @@ interface Parameters {
     token: string
 }
 
-var restartBuild: Executor = {
+export let restartBuild: Executor = {
     description: "Restart a build on Travis CI",
     name: "RestartBuild",
     tags: ["atomist/intent=restart build", "atomist/private=false"],
