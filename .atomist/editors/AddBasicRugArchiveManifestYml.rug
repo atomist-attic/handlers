@@ -51,8 +51,6 @@ with File f when f.path = manifest
     do regexpReplace "(?m)^group:.*" { 'group: "' + group_id + '"' }
     do regexpReplace "(?m)^artifact:.*" { 'artifact: "' + project_name + '"' }
     do regexpReplace "(?m)^version:.*" { 'version: "' + version + '"' }
-    do regexpReplace '(?m)^dependencies:\s*\n(\s*-.*\n)*' { "dependencies:\n" }
-    do regexpReplace '(?m)^extensions:\s*\n(\s*-.*\n)*' { "extensions:\n" }
     do regexpReplace "(?m)^repo:.*\n" ""
     do regexpReplace "(?m)^branch:.*\n" ""
     do regexpReplace "(?m)^sha:.*\n" ""
