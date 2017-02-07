@@ -17,8 +17,7 @@
 @description "Create a new Rug Handlers Archive project"
 @tag "rug"
 @tag "atomist"
-@generator
-editor NewHandlersProject
+generator NewHandlersProject
 
 @displayName "Project Name"
 @description "name of your new project"
