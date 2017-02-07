@@ -12,14 +12,14 @@ atomist.on<TreeNode, TreeNode>("/issue[.state()='open']", m => {
    assign = message.actionRegistry().bindParameter(assign, "owner", issue.repo().owner())
    message.withAction(assign)
 
-   let bug = message.actionRegistry().findByName("LabelIssue|Label as Bug")
+   let bug = message.actionRegistry().findByName("LabelIssue|Bug")
    bug = message.actionRegistry().bindParameter(bug, "number", issue.number())
    bug = message.actionRegistry().bindParameter(bug, "label", "bug")
    bug = message.actionRegistry().bindParameter(bug, "repo", issue.repo().name())
    bug = message.actionRegistry().bindParameter(bug, "owner", issue.repo().owner())
    message.withAction(bug)
 
-   let enhancement = message.actionRegistry().findByName("LabelIssue|Label as Enhancement")
+   let enhancement = message.actionRegistry().findByName("LabelIssue|Enhancement")
    enhancement = message.actionRegistry().bindParameter(enhancement, "number", issue.number())
    enhancement = message.actionRegistry().bindParameter(enhancement, "label", "enhancement")
    enhancement = message.actionRegistry().bindParameter(enhancement, "repo", issue.repo().name())
@@ -64,14 +64,14 @@ atomist.on<TreeNode, TreeNode>("/comment", m => {
    assign = message.actionRegistry().bindParameter(assign, "owner", issueComment.repo().owner())
    message.withAction(assign)
 
-   let bug = message.actionRegistry().findByName("LabelIssue|Label as Bug")
+   let bug = message.actionRegistry().findByName("LabelIssue|Bug")
    bug = message.actionRegistry().bindParameter(bug, "number", issueComment.on().number())
    bug = message.actionRegistry().bindParameter(bug, "label", "bug")
    bug = message.actionRegistry().bindParameter(bug, "repo", issueComment.repo().name())
    bug = message.actionRegistry().bindParameter(bug, "owner", issueComment.repo().owner())
    message.withAction(bug)
 
-   let enhancement = message.actionRegistry().findByName("LabelIssue|Label as Enhancement")
+   let enhancement = message.actionRegistry().findByName("LabelIssue|Enhancement")
    enhancement = message.actionRegistry().bindParameter(enhancement, "number", issueComment.on().number())
    enhancement = message.actionRegistry().bindParameter(enhancement, "label", "enhancement")
    enhancement = message.actionRegistry().bindParameter(enhancement, "repo", issueComment.repo().name())

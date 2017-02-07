@@ -1,8 +1,8 @@
 group: atomist
 artifact: handlers
-version: "0.8.1"
+version: "0.10.4"
 requires: "0.11.0"
 dependencies:
 extensions:
-  - "com.atomist:github-commands:0.4.1"
+  - "com.atomist:github-commands:0.5.3"
   - "com.atomist:travis-rug-type:0.7.0"
