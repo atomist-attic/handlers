@@ -2,8 +2,13 @@ import {Atomist} from '@atomist/rug/operations/Handler'
 import {TreeNode} from '@atomist/rug/tree/PathExpression'
 declare var atomist: Atomist
 
-atomist.on<TreeNode, TreeNode>("/PullRequest[.state()='open'][/author::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?][/mergedBy::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?][/on::Repo()/channel::ChatChannel()][/head::Commit()/contains::Push()[/triggeredBy::Build()][/on::Repo()][/contains::Commit()/author::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?]]", m => {
+atomist.on<TreeNode, TreeNode>("/PullRequest[/author::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?][/mergedBy::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?][/on::Repo()/channel::ChatChannel()][/head::Commit()/contains::Push()[/triggeredBy::Build()][/on::Repo()][/contains::Commit()/author::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?]]", m => {
    let pr = m.root() as any
+
+   if (pr.state() != "open") {
+     return
+   }
+
    let message = atomist.messageBuilder().regarding(pr)
 
    let merge = message.actionRegistry().findByName("MergePullRequest|Merge")
@@ -17,8 +22,13 @@ atomist.on<TreeNode, TreeNode>("/PullRequest[.state()='open'][/author::GitHubId(
    message.withCorrelationId(cid).send()
 })
 
-atomist.on<TreeNode, TreeNode>("/PullRequest[.state()='closed'][/author::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?][/mergedBy::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?][/on::Repo()/channel::ChatChannel()][/head::Commit()/contains::Push()[/triggeredBy::Build()][/on::Repo()][/contains::Commit()/author::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?]]", m => {
+atomist.on<TreeNode, TreeNode>("/PullRequest[/author::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?][/mergedBy::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?][/on::Repo()/channel::ChatChannel()][/head::Commit()/contains::Push()[/triggeredBy::Build()][/on::Repo()][/contains::Commit()/author::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?]]", m => {
    let pr = m.root() as any
+
+   if (pr.state() != "closed") {
+     return
+   }
+
    let message = atomist.messageBuilder().regarding(pr)
    
    let cid = "commit_event/" + pr.on().owner() + "/" + pr.on().name() + "/" + pr.head().sha()

@@ -2,8 +2,14 @@ import {Atomist} from '@atomist/rug/operations/Handler'
 import {TreeNode} from '@atomist/rug/tree/PathExpression'
 declare var atomist: Atomist
 
-atomist.on<TreeNode, TreeNode>("/Issue()[.state()='open'][/resolvedBy::Commit()/author::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?]?[/by::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?][/belongsTo::Repo()/channel::ChatChannel()]", m => {
+atomist.on<TreeNode, TreeNode>("/Issue()[/resolvedBy::Commit()/author::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?]?[/by::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?][/belongsTo::Repo()/channel::ChatChannel()]", m => {
    let issue = m.root() as any
+
+   // temp work around for path expression reflection issue
+   if (issue.state() != "open") {
+     return
+   }
+
    let message = atomist.messageBuilder().regarding(issue)
 
    let assign = message.actionRegistry().findByName("AssignIssue|Assign")
@@ -43,8 +49,14 @@ atomist.on<TreeNode, TreeNode>("/Issue()[.state()='open'][/resolvedBy::Commit()/
    message.withCorrelationId(cid).send()
 })
 
-atomist.on<TreeNode, TreeNode>("/Issue()[.state()='closed'][/resolvedBy::Commit()/author::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?]?[/by::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?][/belongsTo::Repo()/channel::ChatChannel()]", m => {
+atomist.on<TreeNode, TreeNode>("/Issue()[/resolvedBy::Commit()/author::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?]?[/by::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?][/belongsTo::Repo()/channel::ChatChannel()]", m => {
    let issue = m.root() as any
+
+   // temp work around for path expression reflection issue
+   if (issue.state() != "closed") {
+     return
+   }
+
    let message = atomist.messageBuilder().regarding(issue)
 
    let reopen = message.actionRegistry().findByName("ReopenIssue|Reopen")
@@ -60,6 +72,7 @@ atomist.on<TreeNode, TreeNode>("/Issue()[.state()='closed'][/resolvedBy::Commit(
 
 atomist.on<TreeNode, TreeNode>("/Comment()[/by::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?][/on::Issue()[/belongsTo::Repo()/channel::ChatChannel()][/by::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?][/resolvedBy::Commit()/author::GitHubId()[/hasGithubIdentity::Person()/hasChatIdentity::ChatId()]?]?]", m => {
    let issueComment = m.root() as any
+
    let message = atomist.messageBuilder().regarding(issueComment)
 
    let assign = message.actionRegistry().findByName("AssignIssue|Assign")
