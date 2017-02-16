@@ -17,7 +17,7 @@ atomist.on<TreeNode, TreeNode>("/PullRequest()[/author::GitHubId()[/hasGithubIde
    merge = message.actionRegistry().bindParameter(merge, "repo", pr.on().name())
    message.withAction(merge)
 
-   let cid = "commit_event/" + pr.on().owner() + "/" + pr.on().name() + "/" + pr.head().sha()
+   let cid = "pr_event/" + pr.on().owner() + "/" + pr.on().name() + "/" + pr.head().sha()
 
    message.withCorrelationId(cid).send()
 })
@@ -31,7 +31,7 @@ atomist.on<TreeNode, TreeNode>("/PullRequest()[/author::GitHubId()[/hasGithubIde
 
    let message = atomist.messageBuilder().regarding(pr)
    
-   let cid = "commit_event/" + pr.on().owner() + "/" + pr.on().name() + "/" + pr.head().sha()
+   let cid = "pr_event/" + pr.on().owner() + "/" + pr.on().name() + "/" + pr.head().sha()
 
    message.withCorrelationId(cid).send()
 })
