@@ -34,7 +34,9 @@ atomist.on<TreeNode, TreeNode>("/Build[/hasBuild::Commit()/author::GitHubId()[/h
 })
 
 function sendDirectMessage(build: any, message: string, mb: MessageBuilder) {
+  /*
   if (build.hasBuild().author().hasGithubIdentity() != null) {
       mb.say(message).on(build.hasBuild().author().hasGitHubIdentity().hasChatIdentity().id()).send()
   }
+  */
 }
