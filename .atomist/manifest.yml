@@ -1,7 +1,7 @@
 group: atomist
 artifact: handlers
-version: "0.13.2"
-requires: "0.12.0"
+version: "0.13.3"
+requires: "0.12.1"
 dependencies:
 extensions:
   - "com.atomist:github-commands:0.6.0"
