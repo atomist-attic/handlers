@@ -17,7 +17,7 @@ interface Parameters {
 export let createIssue: Executor = {
     description: "Create a GitHub issue",
     name: "CreateIssue",
-    tags: ["atomist/intent=create issue", "atomist/private=false"],
+    tags: ["atomist/intent=create issue"],
     parameters: [
         // TODO proper patterns and validation
         { name: "title", description: "Issue Title", pattern: "^.*$", maxLength: 100, required: true },

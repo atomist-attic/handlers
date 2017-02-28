@@ -17,7 +17,7 @@ interface Parameters {
 export let assignIssue: Executor = {
     description: "Assign a GitHub issue",
     name: "AssignIssue",
-    tags: ["atomist/intent=assign issue", "atomist/private=false"],
+    tags: ["atomist/intent=assign issue"],
     parameters: [
         // TODO proper patterns and validation
         { name: "number", description: "Issue Number", pattern: "^.*$", maxLength: 100, required: true },

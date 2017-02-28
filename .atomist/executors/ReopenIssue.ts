@@ -16,7 +16,7 @@ interface Parameters {
 export let reopenIssue: Executor = {
     description: "Reopen a GitHub issue",
     name: "ReopenIssue",
-    tags: ["atomist/intent=reopen issue", "atomist/private=false"],
+    tags: ["atomist/intent=reopen issue"],
     parameters: [
         // TODO proper patterns and validation
         { name: "number", description: "Issue Number", pattern: "^.*$", maxLength: 100, required: true },

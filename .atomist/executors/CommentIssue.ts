@@ -17,7 +17,7 @@ interface Parameters {
 export let commentIssue: Executor = {
     description: "Comment on a GitHub issue",
     name: "CommentIssue",
-    tags: ["atomist/intent=add comment", "atomist/intent=create comment", "atomist/private=false"],
+    tags: ["atomist/intent=add comment", "atomist/intent=create comment"],
     parameters: [
         // TODO proper patterns and validation
         { name: "number", description: "Issue Number", pattern: "^.*$", maxLength: 100, required: true },

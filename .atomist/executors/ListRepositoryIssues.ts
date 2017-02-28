@@ -16,7 +16,7 @@ interface Parameters {
 export let listRepositoryIssues: Executor = {
     description: "List repository GitHub issues",
     name: "ListRepositoryIssues",
-    tags: ["atomist/intent=open issues", "atomist/private=false"],
+    tags: ["atomist/intent=open issues"],
     parameters: [
         { name: "search", description: "Search Text", pattern: "^.*$", maxLength: 100, required: false, displayable: true},
         Owner, Repository, RepoUserToken

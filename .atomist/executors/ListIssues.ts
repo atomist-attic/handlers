@@ -14,7 +14,7 @@ interface Parameters {
 export let listIssues: Executor = {
     description: "List user's GitHub issues",
     name: "ListIssues",
-    tags: ["atomist/intent=list issues", "atomist/private=false"],
+    tags: ["atomist/intent=list issues"],
     parameters: [
         // TODO proper patterns and validation
         { name: "days", description: "Days", pattern: "^.*$", maxLength: 100, required: false, default: "1" },

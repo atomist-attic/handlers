@@ -16,7 +16,7 @@ interface Parameters {
 export let createRelease: Executor = {
     description: "Create a GitHub release",
     name: "CreateRelease",
-    tags: ["atomist/intent=create release", "atomist/private=false"],
+    tags: ["atomist/intent=create release"],
     parameters: [
         // TODO proper patterns and validation
         { name: "sha", description: "GitHub Sha", pattern: "^.*$", maxLength: 100, required: true },

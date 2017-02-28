@@ -17,7 +17,7 @@ interface Parameters {
 export let labelIssue: Executor = {
     description: "Label a GitHub issue",
     name: "LabelIssue",
-    tags: ["atomist/intent=label issue", "atomist/private=false"],
+    tags: ["atomist/intent=label issue"],
     parameters: [
         // TODO proper patterns and validation
         { name: "number", description: "Issue Number", pattern: "^.*$", maxLength: 100, required: true },

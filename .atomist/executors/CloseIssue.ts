@@ -16,7 +16,7 @@ interface Parameters {
 export let closeIssue: Executor = {
     description: "Close a GitHub issue",
     name: "CloseIssue",
-    tags: ["atomist/intent=close issue", "atomist/private=false"],
+    tags: ["atomist/intent=close issue"],
     parameters: [
         // TODO proper patterns and validation
         { name: "number", description: "Issue Number", pattern: "^.*$", maxLength: 100, required: true },

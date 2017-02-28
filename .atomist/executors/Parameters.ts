@@ -29,3 +29,23 @@ export let RepoUserToken: Parameter = {
   displayable: false,
   tags: ["atomist/user_token", "atomist/github/user_token=repo"]
 }
+
+export let RepoHookUserToken: Parameter = {
+  name: "token",
+  description: "GitHub Token",
+  pattern: "^.*$",
+  maxLength: 100,
+  required: false,
+  displayable: false,
+  tags: ["atomist/user_token", "atomist/github/user_token=admin:repo_hook"]
+}
+
+export let OrgHookUserToken: Parameter = {
+  name: "token",
+  description: "GitHub Token",
+  pattern: "^.*$",
+  maxLength: 100,
+  required: false,
+  displayable: false,
+  tags: ["atomist/user_token", "atomist/github/user_token=admin:org_hook"]
+}

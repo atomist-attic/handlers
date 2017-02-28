@@ -16,7 +16,7 @@ interface Parameters {
 export let mergePullRequest: Executor = {
     description: "Merge a GitHub PullRequest",
     name: "MergePullRequest",
-    tags: ["atomist/intent=merge pr", "atomist/intent=merge pullrequest", "atomist/private=false"],
+    tags: ["atomist/intent=merge pr", "atomist/intent=merge pullrequest"],
     parameters: [
         // TODO proper patterns and validation
         { name: "number", description: "Pull Request Number", pattern: "^.*$", maxLength: 100, required: true },
